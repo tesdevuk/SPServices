@@ -2439,7 +2439,11 @@
 
             // The current user's ID is reliably available in an existing JavaScript variable
             if (opt.fieldNames[i] === "ID") {
-                thisField = currentContext.thisUserId;
+                if(currentContext.thisUserId !== undefined){
+                    thisField = currentContext.thisUserId;
+                }else{
+                    thisField = thisUserDisp.responseText.match("userdisp\\.aspx\\?ID=(\\d+)","gm")[1];
+                }
             } else {
                 var thisTextValue;
                 if (fieldCount > 1) {
